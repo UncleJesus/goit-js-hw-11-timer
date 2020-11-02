@@ -1,10 +1,10 @@
-const refs = {
-  days: document.querySelector('.value[data-value="days"]'),
-  hours: document.querySelector('.value[data-value="hours"]'),
-  mins: document.querySelector('.value[data-value="mins"]'),
-  secs: document.querySelector('.value[data-value="secs"]'),
-  timerFace: document.getElementById("timer-1"),
-};
+// const refs = {
+//   days: document.querySelector('.value[data-value="days"]'),
+//   hours: document.querySelector('.value[data-value="hours"]'),
+//   mins: document.querySelector('.value[data-value="mins"]'),
+//   secs: document.querySelector('.value[data-value="secs"]'),
+//   timerFace: document.getElementById("timer-1"),
+// };
 
 class CountdownTimer {
   constructor({ selector, targetDate }) {
@@ -26,10 +26,17 @@ class CountdownTimer {
     );
     const mins = this.pad(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
     const secs = this.pad(Math.floor((time % (1000 * 60)) / 1000));
-    refs.days.textContent = `${days}`;
-    refs.hours.textContent = `${hours}`;
-    refs.mins.textContent = `${mins}`;
-    refs.secs.textContent = `${secs}`;
+
+    let div = document.querySelector(`${this.selector}`);
+    div.querySelector('.value[data-value="days"]').textContent = days;
+    div.querySelector('.value[data-value="hours"]').textContent = hours;
+    div.querySelector('.value[data-value="mins"]').textContent = mins;
+    div.querySelector('.value[data-value="secs"]').textContent = secs;
+
+    // refs.days.textContent = `${days}`;
+    // refs.hours.textContent = `${hours}`;
+    // refs.mins.textContent = `${mins}`;
+    // refs.secs.textContent = `${secs}`;
   }
 
   pad(value) {
@@ -46,3 +53,8 @@ new CountdownTimer({
   selector: "#timer-1",
   targetDate: new Date("December 30, 2020"),
 });
+
+// new CountdownTimer({
+//   selector: "#timer-2",
+//   targetDate: new Date("September 1, 1996"),
+// });
